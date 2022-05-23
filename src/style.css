@@ -1,0 +1,115 @@
+@keyframes cursor-anim {
+    0% {
+        background-position: 200% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+body {
+    height: 100%;
+    overflow-y: hidden;
+    background: none;
+}
+
+.container {
+    width: 90%;
+    padding-top: 40px;
+    margin-left: 124px;
+    height: 580px;
+}
+
+#main, #options {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-content: flex-start;
+    -ms-flex-line-pack: start;
+    align-content: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    max-height: 110%;
+}
+
+p {
+    margin: 0;
+}
+
+.chara {
+    margin-top: 6px;
+    width: 321px;
+    margin-right: 20px;
+    border: 3px solid black;
+    height: 46px;
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto;
+    position: relative;
+    padding: 0;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.chara p {
+    margin: 10px;
+    text-align: left;
+    margin-left: 46px;
+    font-weight: bold;
+}
+
+.chara>div {
+    position: absolute;
+    display: block;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.chara:hover, .chara:focus {
+    border-color: transparent;
+    background: linear-gradient(90deg, rgb(255, 109, 0) 0%, rgb(255, 255, 0) 65%, rgb(255, 109, 0) 70%);
+    background-size: 200% 1px;
+    animation: cursor-anim 650ms linear infinite normal;
+}
+
+.chara-icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1B2C33;
+    width: 40px;
+    height: 100%;
+    background-size: 75%;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}
+
+.chara-icon>img {
+    width: 30px;
+    height: 30px;
+}
+
+#options {
+    display: none;
+}

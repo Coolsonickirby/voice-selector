@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="focus-ring-visibility" content="hidden" />
+    <meta name="viewport" content="width=device-width, height=device-height,user-scalable=no, initial-scale=1.0">
+    <title>Voice Switcher</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./help/js/jquery-3.3.1.min.js"></script>
+    <script>
+        var index = 0;
+        var chara = "";
+        var chara_infos = {
+            {{#chara_names}}
+            "{{0}}": "{{1}}",
+            {{/chara_names}}
+        };
+
+
+        function setCurrentChara(ch) {
+            chara = ch;
+        }
+
+        function setCurrentVoiceForChara(vc) {
+            chara_infos[chara] = vc;
+        }
+
+        function changeDiv(elem, from, to) {
+            if (to == "options") {
+                $("#options .check").css("display", "none");
+                if (chara in chara_infos) {
+                    $(`#${chara_infos[chara]}`).css("display", "block");
+                }
+            }
+
+            $(`#${from}`).fadeOut(200, () => {
+                $(`#${to}`).css("display", "flex").hide().fadeIn(200, () => {
+                    $(`#${to}`).children()[index].focus();
+
+                    if (to == "options") {
+                        index = Array.from(document.getElementById("main").children).indexOf(elem);
+                        console.log(index);
+                    } else if (to == "main") {
+                        index = 0;
+                    }
+                });
+            });
+        }
+
+        function TranslateName(name) {
+            switch (name) {
+                case "bayonetta":
+                    return "Bayonetta";
+                case "brave":
+                    return "Hero";
+                case "buddy":
+                    return "Banjo & Kazooie";
+                case "captain":
+                    return "Captain Falcon";
+                case "chrom":
+                    return "Chrom";
+                case "cloud":
+                    return "Cloud";
+                case "daisy":
+                    return "Daisy";
+                case "dedede":
+                    return "King Dedede";
+                case "diddy":
+                    return "Diddy Kong";
+                case "dolly":
+                    return "Terry";
+                case "donkey":
+                    return "Donkey Kong";
+                case "duckhunt":
+                    return "Duck Hunt";
+                case "falco":
+                    return "Falco";
+                case "fox":
+                    return "Fox";
+                case "gamewatch":
+                    return "Mr. Game & Watch";
+                case "ganon":
+                    return "Ganondorf";
+                case "ganondorf":
+                    return "Ganondorf";
+                case "gaogaen":
+                    return "Incineroar";
+                case "gekkouga":
+                    return "Greninja";
+                case "ice_climber":
+                    return "Ice Climbers";
+                case "popo":
+                    return "Popo (Main)";
+                case "nana":
+                    return "Nana (Secondary)";
+                case "ike":
+                    return "Ike";
+                case "inkling":
+                    return "Inkling";
+                case "jack":
+                    return "Joker";
+                case "kamui":
+                    return "Corrin";
+                case "ken":
+                    return "Ken";
+                case "kirby":
+                    return "Kirby";
+                case "koopa":
+                    return "Bowser";
+                case "koopajr":
+                    return "Bowser Jr.";
+                case "krool":
+                    return "King K. Rool";
+                case "link":
+                    return "Link";
+                case "littlemac":
+                    return "Little Mac";
+                case "lucario":
+                    return "Lucario";
+                case "lucas":
+                    return "Lucas";
+                case "lucina":
+                    return "Lucina";
+                case "luigi":
+                    return "Luigi";
+                case "mario":
+                    return "Mario";
+                case "mariod":
+                    return "Dr. Mario";
+                case "marth":
+                    return "Marth";
+                case "master":
+                    return "Byleth";
+                case "metaknight":
+                    return "Meta Knight";
+                case "mewtwo":
+                    return "Mewtwo";
+                case "miifighter":
+                    return "Mii Brawler";
+                case "miigunner":
+                    return "Mii Gunner";
+                case "miiswordsman":
+                    return "Mii Swordfighter";
+                case "murabito":
+                    return "Villager";
+                case "ness":
+                    return "Ness";
+                case "packun":
+                    return "Piranha Plant";
+                case "pacman":
+                    return "PAC-MAN";
+                case "palutena":
+                    return "Palutena";
+                case "peach":
+                    return "Peach";
+                case "pichu":
+                    return "Pichu";
+                case "pikachu":
+                    return "Pikachu";
+                case "pikmin":
+                    return "Olimar";
+                case "pit":
+                    return "Pit";
+                case "pitb":
+                    return "Dark Pit";
+                case "ptrainer":
+                    return "Pokémon Trainer";
+                case "purin":
+                    return "Jigglypuff";
+                case "reflet":
+                    return "Robin";
+                case "richter":
+                    return "Richter";
+                case "ridley":
+                    return "Ridley";
+                case "robot":
+                    return "R.O.B.";
+                case "rockman":
+                    return "Mega Man";
+                case "rosetta":
+                    return "Rosalina & Luma";
+                case "roy":
+                    return "Roy";
+                case "ryu":
+                    return "Ryu";
+                case "samus":
+                    return "Samus";
+                case "samusd":
+                    return "Dark Samus";
+                case "sheik":
+                    return "Sheik";
+                case "shizue":
+                    return "Isabelle";
+                case "shulk":
+                    return "Shulk";
+                case "simon":
+                    return "Simon";
+                case "snake":
+                    return "Snake";
+                case "sonic":
+                    return "Sonic";
+                case "szerosuit":
+                    return "Zero Suit Samus";
+                case "toonlink":
+                    return "Toon Link";
+                case "wario":
+                    return "Wario";
+                case "wiifit":
+                    return "Wii Fit Trainer";
+                case "wolf":
+                    return "Wolf";
+                case "yoshi":
+                    return "Yoshi";
+                case "younglink":
+                    return "Young Link";
+                case "zelda":
+                    return "Zelda";
+                case "pzenigame":
+                    return "Squirtle";
+                case "pfushigisou":
+                    return "Ivysaur";
+                case "plizardon":
+                    return "Charizard";
+                case "miienemyf":
+                    return "Mii Brawler (Enemy)";
+                case "miienemys":
+                    return "Mii Swordfighter (Enemy)";
+                case "miienemyg":
+                    return "Mii Gunner (Enemy)";
+                case "koopag":
+                    return "Giga Bowser";
+                case "0x13edfdb2d3":
+                    return "Byleth";
+                case "tantan":
+                    return "Min Min";
+                case "pickel":
+                    return "Steve";
+                case "0x13dfa966e6":
+                    return "Steve";
+                case "edge":
+                    return "Sephiroth";
+                case "eflame_first":
+                    return "Pyra";
+                case "0x13ea13c533":
+                    return "Pyra";
+                case "elight_first":
+                    return "Mythra";
+                case "0x13843785a5":
+                    return "Mythra";
+                case "eflame_only":
+                    return "Pyra (Only)";
+                case "elight_only":
+                    return "Mythra (Only)";
+                default:
+                    return name;
+            }
+        }
+
+        function submitInfo() {
+            var res = "";
+            for (var key in chara_infos) {
+                if (chara_infos.hasOwnProperty(key)) {
+                    res += `${key}=${chara_infos[key]}CSK_SPLIT`;
+                }
+            }
+            window.location.href = "http://localhost/" + res;
+        }
+
+        function checkGamepad(index, gamepad) {
+            //#region + Button Pressed Check (Save)
+            if (gamepad.buttons[9].pressed) {
+                submitInfo();
+            }
+            //#endregion
+        }
+
+        window.onload = function () {
+            $(".translate-name").each(function (i) {
+                this.innerHTML = TranslateName(this.innerHTML);
+            });
+
+            // Listen to the gamepadconnected event
+            window.addEventListener("gamepadconnected", function (e) {
+                // Once a gamepad has connected, start an interval function that will run every 100ms to check for input
+                setInterval(function () {
+                    var gpl = navigator.getGamepads();
+                    if (gpl.length > 0) {
+                        for (var i = 0; i < gpl.length; i++) {
+                            checkGamepad(i, gpl[i]);
+                        }
+                    }
+                }, 100);
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div id="main">
+            {{#chara_names}}
+            <button class="chara" onclick="setCurrentChara('{{0}}'); changeDiv(this, 'main', 'options');">
+                <div>
+                    <div class="chara-icon">
+                        <img src="icons/chara_2_{{0}}_00.png" width="30" height="30">
+                    </div>
+                    <p class="translate-name">{{0}}</p>
+                </div>
+            </button>
+            {{/chara_names}}
+        </div>
+
+        <div id="options">
+            <button class="chara" onclick="changeDiv(this, 'options', 'main'); setCurrentVoiceForChara('eng');">
+                <div>
+                    <div class="chara-icon">
+                        <img class="check" src="check.svg" width="30" height="30" id="eng">
+                    </div>
+                    <p>English</p>
+                </div>
+            </button>
+            <button class="chara" onclick="changeDiv(this, 'options', 'main'); setCurrentVoiceForChara('jp');">
+                <div>
+                    <div class="chara-icon">
+                        <img class="check" src="check.svg" width="30" height="30" id="jp">
+                    </div>
+                    <p>Japanese</p>
+                </div>
+            </button>
+            <button class="chara" onclick="changeDiv(this, 'options', 'main'); setCurrentVoiceForChara('default');">
+                <div>
+                    <div class="chara-icon">
+                        <img class="check" src="check.svg" width="30" height="30" id="default">
+                    </div>
+                    <p>Default</p>
+                </div>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
